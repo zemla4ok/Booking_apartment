@@ -1,0 +1,25 @@
+﻿<Window x:Class="hotelClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hotelClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="330">
+    <Grid Background="#FF2A0034">
+        <TextBlock HorizontalAlignment="Left" Margin="40,10,0,0" TextWrapping="Wrap" Text="LOGIN" VerticalAlignment="Top" FontFamily="Cooper Black" FontSize="30" Foreground="#FFEB77FF"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="40,73,0,0" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="14"/>
+        <TextBox x:Name="City" HorizontalAlignment="Left" Height="30" Margin="40,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="15" Foreground="#FF2A0034" VerticalContentAlignment="Center"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="40,173,0,0" TextWrapping="Wrap" Text="Hotel" VerticalAlignment="Top" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="14"/>
+        <TextBox x:Name="Hotel" HorizontalAlignment="Left" Height="30" Margin="40,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontSize="15" Foreground="#FF2A0034" VerticalContentAlignment="Center"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="40,234,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="14"/>
+        <PasswordBox x:Name="Pass" HorizontalAlignment="Left" Margin="40,250,0,0" VerticalAlignment="Top" Width="155" Height="30" VerticalContentAlignment="Center" Foreground="#FF2A0034" FontSize="16"/>
+
+        <Button Content="LOG IN" Click="Login" HorizontalAlignment="Left" Margin="75,300,0,0" VerticalAlignment="Top" Width="75" Background="#FF6B1D78" Foreground="#FFEB77FF" FontWeight="Bold"/>
+
+        <Button Content="Registration" Click="Registration" HorizontalAlignment="Left" Margin="75,355,0,0" VerticalAlignment="Top" Width="175" Height="40" Background="#FF6B1D78" Foreground="#FFEB77FF" FontSize="18" FontWeight="Bold"/>
+    </Grid>
+</Window>

@@ -21,33 +21,27 @@ CREATE TABLE APARTMENTS(
 	primary key(ID),
 	foreign key(HOTEL_ID) references HOTELS(ID));
 
-CREATE TABLE BOOKING(
-	ID int identity(1,1),
-	RESERVATION_DATE date,
-	primary key(ID));
-
 CREATE TABLE USERS(
 	ID int IDENTITY(1,1),
 	NAME nvarchar(20),
 	SURNAME nvarchar(20),
 	PASSPORT_NUM nvarchar(20),
-	BOOKING_ID int,
-	primary key(ID),
-	foreign key (BOOKING_ID) references BOOKING(ID));
+	primary key(ID));
 
 CREATE TABLE APARTMENT_LIST(
 	ID int IDENTITY(1,1),
 	APARTMENTS_ID int,
-	BOOKING_ID int,
+	USERS_ID int,
 	DEFAULT_COST int,
 	ARRIVIG_DATE date,
 	EVICTION_DATE date,
 	IS_EARLY bit,
 	IS_DOSEAGE bit,
 	RESERVED_PLACES int,
+	RESERVATION_DATE date,
 	primary key(ID),
 	foreign key(APARTMENTS_ID) references APARTMENTS(ID),
-	foreign key(BOOKING_ID) references BOOKING(ID));
+	foreign key(USERS_ID) references USERS(ID));
 
 
 	--DROP TABLES--
@@ -56,4 +50,3 @@ CREATE TABLE APARTMENT_LIST(
 	drop table HOTELS;
 	drop table CITY;
 	drop table USERS;
-	drop table BOOKING;

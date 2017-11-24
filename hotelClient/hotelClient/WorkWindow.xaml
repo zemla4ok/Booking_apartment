@@ -1,0 +1,44 @@
+﻿<Window x:Class="hotelClient.WorkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hotelClient"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="WorkWindow" Height="500" Width="700">
+    <Grid Background="#FF2A0034">
+        <TabControl>
+            <TabItem Width="100" Height="20" Header="Add Apartments" FontWeight="Bold" Background="#FF2A0034" Foreground="#FFEB77FF">
+                <Grid>
+                    <GroupBox Header="Add 1 Apaartment" Margin="10,10,345,10">
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Apartment Number" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="ApartNum" Value="1" Minimum="1" Margin="10,31,190,337"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="179,13,0,0" TextWrapping="Wrap" Text="Current cost" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="CurrCost" Value="1" Minimum="1" Margin="179,31,21,337"/>
+
+                            <TextBlock Margin="128,83,120,0" TextWrapping="Wrap" Text="Close date" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <DatePicker Name="CloseDate" HorizontalAlignment="Left" Margin="103,104,0,0" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="10,277,0,0" TextWrapping="Wrap" Text="Places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="Places" Value="1" Minimum="1" Margin="10,298,190,70"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="179,275,0,0" TextWrapping="Wrap" Text="Free places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="FreePlaces" Value="0" Minimum="0" Margin="179,296,21,72"/>
+                            <Button  Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="Add" Margin="76,349,73,10" Click="AddApartment"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="From XML File" Margin="346,10,9,10">
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Width="100" Height="20" Header="Update Apartments" FontWeight="Bold" Background="#FF2A0034" Foreground="#FFEB77FF">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
