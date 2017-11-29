@@ -28,7 +28,6 @@ C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\Work
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.g.resources
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.Properties.Resources.resources
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.csproj.GenerateResource.Cache
-C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.csproj.CoreCompileInputs.cache
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.exe
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.pdb
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\bin\Debug\hotelClient.pdb
