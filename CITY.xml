@@ -1,34 +1,26 @@
 <dataroot>
     <city>
-        <id>1</id>
-        <name>Minsk</name>
+        <name>Oslo</name>
     </city>
     <city>
-        <id>2</id>
-        <name>Slonim</name>
+        <name>ghjk</name>
     </city>
     <city>
-        <id>3</id>
-        <name>Moscow</name>
+        <name>poiu</name>
     </city>
     <city>
-        <id>4</id>
-        <name>Gomel</name>
+        <name>asdg</name>
     </city>
     <city>
-        <id>5</id>
-        <name>Paris</name>
+        <name>qwer</name>
     </city>
     <city>
-        <id>6</id>
-        <name>London</name>
+        <name>Mlrt</name>
     </city>
     <city>
-        <id>7</id>
-        <name>New-York</name>
+        <name>Brest</name>
     </city>
     <city>
-        <id>8</id>
-        <name>Rome</name>
+        <name>Slm</name>
     </city>
 </dataroot>
