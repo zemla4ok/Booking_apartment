@@ -27,10 +27,17 @@
 
                             <TextBlock HorizontalAlignment="Left" Margin="179,275,0,0" TextWrapping="Wrap" Text="Free places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
                             <xctk:IntegerUpDown x:Name="FreePlaces" Value="0" Minimum="0" Margin="179,296,21,72"/>
-                            <Button  Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="Add" Margin="76,349,73,10" Click="AddApartment"/>
+                            <Button  Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="ADD" Margin="76,349,73,10" Click="AddApartment"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="From XML File" Margin="346,10,9,10">
+                        <Grid>
+                            <TextBlock Name="Path" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="path..." VerticalAlignment="Top" Height="54" Width="225" FontSize="14"/>
+                            <Button Background="#FF6B1D78" Foreground="#FFEB77FF" Content="PATH" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="69" Height="25" Click="ChoosePathOfApartXML"/>
+                            <Button Name="AddApartXML" Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="ADD" Margin="80,149,69,210" IsEnabled="False" Click="AddApartmentsFromXLMFile"/>
+
+
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>

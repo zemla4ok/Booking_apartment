@@ -1,44 +1,44 @@
 CREATE TABLE CITY(
 	ID int primary key IDENTITY(1, 1),
-	NAME nvarchar(30));
+	NAME nvarchar(30) unique not null);
 
 CREATE TABLE HOTELS(
 	ID int primary key IDENTITY(1, 1),
-	HOTEL_PASSWORD nvarchar(32),
-	NAME nvarchar(50),
-	STARS int,
-	CITY_ID int,
+	HOTEL_PASSWORD nvarchar(32) not null,
+	NAME nvarchar(50) unique not null,
+	STARS int not null,
+	CITY_ID int not null,
 	foreign key (CITY_ID) references CITY(ID));
 
 CREATE TABLE APARTMENTS(
 	ID int IDENTITY(1, 1),
-	CURRENT_COST int,
-	PLACES int,
-	FREE_PLACES int,
-	HOTEL_ID int,
-	APARTMENTS_NUM int,
-	CLOSE_DATE date,
+	CURRENT_COST int not null,
+	PLACES int not null,
+	FREE_PLACES int not null,
+	HOTEL_ID int not null,
+	APARTMENTS_NUM int not null,
+	CLOSE_DATE date not null,
 	primary key(ID),
 	foreign key(HOTEL_ID) references HOTELS(ID));
 
 CREATE TABLE USERS(
 	ID int IDENTITY(1,1),
-	NAME nvarchar(20),
-	SURNAME nvarchar(20),
-	PASSPORT_NUM nvarchar(20),
+	NAME nvarchar(20) not null,
+	SURNAME nvarchar(20) not null,
+	PASSPORT_NUM nvarchar(20) unique not null,
 	primary key(ID));
 
 CREATE TABLE APARTMENT_LIST(
 	ID int IDENTITY(1,1),
-	APARTMENTS_ID int,
-	USERS_ID int,
-	DEFAULT_COST int,
-	ARRIVIG_DATE date,
-	EVICTION_DATE date,
-	IS_EARLY bit,
-	IS_DOSEAGE bit,
-	RESERVED_PLACES int,
-	RESERVATION_DATE date,
+	APARTMENTS_ID int not null,
+	USERS_ID int not null,
+	DEFAULT_COST int not null,
+	ARRIVIG_DATE date not null,
+	EVICTION_DATE date not null, 
+	IS_EARLY bit not null,
+	IS_DOSEAGE bit not null,
+	RESERVED_PLACES int not null,
+	RESERVATION_DATE date not null,
 	primary key(ID),
 	foreign key(APARTMENTS_ID) references APARTMENTS(ID),
 	foreign key(USERS_ID) references USERS(ID));

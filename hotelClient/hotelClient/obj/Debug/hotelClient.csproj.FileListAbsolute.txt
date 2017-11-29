@@ -32,3 +32,4 @@ C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hote
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.pdb
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\bin\Debug\hotelClient.pdb
 C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.csprojResolveAssemblyReference.cache
+C:\Users\Dmitry\Desktop\Booking_apartment\hotelClient\hotelClient\obj\Debug\hotelClient.csproj.CoreCompileInputs.cache
