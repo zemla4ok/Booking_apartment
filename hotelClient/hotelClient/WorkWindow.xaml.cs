@@ -31,6 +31,7 @@ namespace hotelClient
             InitializeComponent();
             this.CityName = pCity;
             this.HotelName = pHotel;
+            this.GetApartments();
         }
 
         private void AddApartment(object sender, RoutedEventArgs e)
@@ -232,9 +233,126 @@ namespace hotelClient
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
+        
+        private void GetApartments()
+        {
+            TextBlock tb = new TextBlock();
+            tb.Style = this.FindResource("1") as Style;
+            tb.Text = "CURRENT COST     PLACES      FREE PLACES     APARTMENT NUM       CLOSE DATE";
+            this.Apartments.Children.Add(tb);
 
 
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("GetApartmentsForThisHotel", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter hotel = new SqlParameter();
+                hotel.ParameterName = "@hotel";
+                hotel.Value = this.HotelName;
+
+                SqlParameter city = new SqlParameter();
+                city.ParameterName = "@city";
+                city.Value = this.CityName;
+
+                cmd.Parameters.Add(hotel);
+                cmd.Parameters.Add(city);
+
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlDataReader data = cmd.ExecuteReader();
+
+                while (data.Read())
+                {
+                    tb = new TextBlock();
+                    tb.Style = this.FindResource("1") as Style;
+                    tb.Text = "\t" + data[0].ToString() + 
+                              "    \t        " + data[1].ToString() + 
+                              "  \t\t  " + data[2].ToString() + 
+                              "     \t     \t     " + data[3].ToString() + 
+                              "\t\t  " + data[4].ToString().Substring(0, 10);
+                    this.Apartments.Children.Add(tb);
+                }
+                cn.Close();
+            }
+        }
+
+        private void SortApartments(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Apartments.Children.Clear();
+
+                TextBlock tb = new TextBlock();
+                tb.Style = this.FindResource("1") as Style;
+                tb.Text = "CURRENT COST     PLACES      FREE PLACES     APARTMENT NUM       CLOSE DATE";
+                this.Apartments.Children.Add(tb);
 
 
+                using (SqlConnection cn = Connector.GetConnection())
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("SortApartments", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    SqlParameter hotel = new SqlParameter();
+                    hotel.ParameterName = "@hotel";
+                    hotel.Value = this.HotelName;
+
+                    SqlParameter city = new SqlParameter();
+                    city.ParameterName = "@city";
+                    city.Value = this.CityName;
+
+                    cmd.Parameters.Add(hotel);
+                    cmd.Parameters.Add(city);
+
+                    SqlParameter curr_cost = new SqlParameter();
+                    curr_cost.ParameterName = "@curr_cost";
+                    curr_cost.Value = this.CURR_COST.IsChecked;
+
+                    SqlParameter places = new SqlParameter();
+                    places.ParameterName = "@places";
+                    places.Value = this.PLACES.IsChecked;
+
+                    SqlParameter free_places = new SqlParameter();
+                    free_places.ParameterName = "@free_places";
+                    free_places.Value = this.FREE_PLACES.IsChecked;
+
+                    SqlParameter apart_num = new SqlParameter();
+                    apart_num.ParameterName = "@apart_num";
+                    apart_num.Value = this.APART_NUM.IsChecked;
+
+                    SqlParameter close_date = new SqlParameter();
+                    close_date.ParameterName = "@close_date";
+                    close_date.Value = this.CL_DATE.IsChecked;
+
+                    cmd.Parameters.Add(curr_cost);
+                    cmd.Parameters.Add(places);
+                    cmd.Parameters.Add(free_places);
+                    cmd.Parameters.Add(apart_num);
+                    cmd.Parameters.Add(close_date);
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlDataReader data = cmd.ExecuteReader();
+
+                    while (data.Read())
+                    {
+                        tb = new TextBlock();
+                        tb.Style = this.FindResource("1") as Style;
+                        tb.Text = "\t" + data[0].ToString() +
+                                  "    \t        " + data[1].ToString() +
+                                  "  \t\t  " + data[2].ToString() +
+                                  "     \t     \t     " + data[3].ToString() +
+                                  "\t\t  " + data[4].ToString().Substring(0, 10);
+                        this.Apartments.Children.Add(tb);
+                    }
+                    cn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
