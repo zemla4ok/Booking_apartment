@@ -34,7 +34,7 @@
                         <Grid>
                             <TextBlock Name="Path" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="path..." VerticalAlignment="Top" Height="54" Width="225" FontSize="14"/>
                             <Button Background="#FF6B1D78" Foreground="#FFEB77FF" Content="PATH" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top" Width="69" Height="25" Click="ChoosePathOfApartXML"/>
-                            <Button Name="AddApartXML" Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="ADD" Margin="80,149,69,210" IsEnabled="False" Click="AddApartmentsFromXLMFile"/>
+                            <Button Name="AddApartXML" Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="ADD" Margin="75,79,74,280" IsEnabled="False" Click="AddApartmentsFromXLMFile"/>
 
 
                         </Grid>
@@ -43,7 +43,31 @@
             </TabItem>
             <TabItem Width="100" Height="20" Header="Update Apartments" FontWeight="Bold" Background="#FF2A0034" Foreground="#FFEB77FF">
                 <Grid>
+                    <GroupBox Header="Update apartment" HorizontalAlignment="Left" Height="421" Margin="10,10,0,0" VerticalAlignment="Top" Width="322">
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Apartment Number" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="ApartNumUpd" Value="1" Minimum="1" Margin="10,31,190,337"/>
 
+                            <TextBlock HorizontalAlignment="Left" Margin="179,13,0,0" TextWrapping="Wrap" Text="Current cost" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="CurrCostUpd" Value="-1" Minimum="-1" Margin="179,31,21,337"/>
+
+                            <TextBlock Margin="128,83,120,0" TextWrapping="Wrap" Text="Close date" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <DatePicker Name="CloseDateUpd" HorizontalAlignment="Left" Margin="103,104,0,0" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="10,277,0,0" TextWrapping="Wrap" Text="Places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="PlacesUpd" Value="-1" Minimum="-1" Margin="10,298,190,70"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="179,275,0,0" TextWrapping="Wrap" Text="Free places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
+                            <xctk:IntegerUpDown x:Name="FreePlacesUpd" Value="-1" Minimum="-1" Margin="179,296,21,72"/>
+                            <Button  Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="UPDATE" Margin="76,349,73,10" Click="UpdateApartment"/>
+
+                        </Grid>    
+                    </GroupBox>
+                    <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="421" Margin="357,10,0,0" VerticalAlignment="Top" Width="319">
+                        <Grid>
+                            
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>

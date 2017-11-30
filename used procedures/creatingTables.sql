@@ -5,7 +5,7 @@ CREATE TABLE CITY(
 CREATE TABLE HOTELS(
 	ID int primary key IDENTITY(1, 1),
 	HOTEL_PASSWORD nvarchar(32) not null,
-	NAME nvarchar(50) unique not null,
+	NAME nvarchar(50) not null,
 	STARS int not null,
 	CITY_ID int not null,
 	foreign key (CITY_ID) references CITY(ID));
