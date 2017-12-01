@@ -22,12 +22,22 @@
                         <DataGridTextColumn Header="Cost" Width="100" Binding="{Binding Path=Cost}"/>
                         <DataGridTextColumn Header="Places" Width="100" Binding="{Binding Path=Places}"/>
                         <DataGridTextColumn Header="Free pl" Width="100" Binding="{Binding Path=FreePlaces}"/>
-                        <DataGridTextColumn Header="Apart num" Width="100" Binding="{Binding Path=ApartNumber}"/>
-                        <DataGridTextColumn Header="Close date" Width="130" Binding="{Binding Path=CloseDate}"/>
+                        <DataGridTextColumn Header="Apart num" Width="95" Binding="{Binding Path=ApartNumber}"/>
+                        <DataGridTextColumn Header="Close date" Width="120" Binding="{Binding Path=CloseDate}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
         </GroupBox>
+        <GroupBox FontWeight="Bold" FontSize="16" Foreground="#FFEB77FF" Header="Filters"  HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="145" Margin="10,10,0,0">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="City" Padding="10,0,0,0" Margin="0,5,0,0"/>
+                    <ComboBox Name="City" Margin="0,5,0,0" SelectionChanged="GetCityHotels"/>
 
+                    <TextBlock Text="Hotel" Padding="10,0,0,0" Margin="0,5,0,0"/>
+                    <ComboBox IsEnabled="False" Name="Hotel" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

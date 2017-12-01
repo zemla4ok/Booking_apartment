@@ -34,7 +34,7 @@ exec AddApartment
 	@curr_cost = 100,
 	@places = 5,
 	@free_places = 2,
-	@hotel = 'slm1',
+	@hotel = 'slm',
 	@city = 'slm',
 	@apartment_num = 200,
 	@close_date = '10.11.1997',

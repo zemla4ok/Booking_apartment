@@ -36,69 +36,77 @@ namespace hotelClient
 
         private void AddApartment(object sender, RoutedEventArgs e)
         {
-            if (Validator.ValidTextBoxes(this.CloseDate.Text))
+            try
             {
-                using (SqlConnection cn = Connector.GetConnection())
+                if (Validator.ValidTextBoxes(this.CloseDate.Text))
                 {
-                    cn.Open();
-                    SqlCommand cmd = new SqlCommand("AddApartment", cn);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    using (SqlConnection cn = Connector.GetConnection())
+                    {
+                        cn.Open();
+                        SqlCommand cmd = new SqlCommand("AddApartment", cn);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-                    SqlParameter currCost = new SqlParameter();
-                    currCost.ParameterName = "@curr_cost";
-                    currCost.Value = this.CurrCost.Text;
+                        SqlParameter currCost = new SqlParameter();
+                        currCost.ParameterName = "@curr_cost";
+                        currCost.Value = this.CurrCost.Text;
 
-                    SqlParameter places = new SqlParameter();
-                    places.ParameterName = "@places";
-                    places.Value = this.Places.Text;
+                        SqlParameter places = new SqlParameter();
+                        places.ParameterName = "@places";
+                        places.Value = this.Places.Text;
 
-                    SqlParameter freePlaces = new SqlParameter();
-                    freePlaces.ParameterName = "@free_places";
-                    freePlaces.Value = this.FreePlaces.Text;
+                        SqlParameter freePlaces = new SqlParameter();
+                        freePlaces.ParameterName = "@free_places";
+                        freePlaces.Value = this.FreePlaces.Text;
 
-                    SqlParameter hotel = new SqlParameter();
-                    hotel.ParameterName = "@hotel";
-                    hotel.Value = this.HotelName;
+                        SqlParameter hotel = new SqlParameter();
+                        hotel.ParameterName = "@hotel";
+                        hotel.Value = this.HotelName;
 
-                    SqlParameter city = new SqlParameter();
-                    city.ParameterName = "@city";
-                    city.Value = this.CityName;
+                        SqlParameter city = new SqlParameter();
+                        city.ParameterName = "@city";
+                        city.Value = this.CityName;
 
-                    SqlParameter apartNum = new SqlParameter();
-                    apartNum.ParameterName = "@apartment_num";
-                    apartNum.Value = this.ApartNum.Text;
+                        SqlParameter apartNum = new SqlParameter();
+                        apartNum.ParameterName = "@apartment_num";
+                        apartNum.Value = this.ApartNum.Text;
 
-                    SqlParameter closeDate = new SqlParameter();
-                    closeDate.ParameterName = "@close_date";
-                    closeDate.Value = this.CloseDate.Text;
+                        SqlParameter closeDate = new SqlParameter();
+                        closeDate.ParameterName = "@close_date";
+                        closeDate.SqlDbType = System.Data.SqlDbType.Date;
+                        closeDate.Value = this.CloseDate.Text;
 
-                    cmd.Parameters.Add(currCost);
-                    cmd.Parameters.Add(places);
-                    cmd.Parameters.Add(freePlaces);
-                    cmd.Parameters.Add(hotel);
-                    cmd.Parameters.Add(city);
-                    cmd.Parameters.Add(apartNum);
-                    cmd.Parameters.Add(closeDate);
+                        cmd.Parameters.Add(currCost);
+                        cmd.Parameters.Add(places);
+                        cmd.Parameters.Add(freePlaces);
+                        cmd.Parameters.Add(hotel);
+                        cmd.Parameters.Add(city);
+                        cmd.Parameters.Add(apartNum);
+                        cmd.Parameters.Add(closeDate);
 
-                    SqlParameter rc = new SqlParameter();
-                    rc.ParameterName = "@rc";
-                    rc.SqlDbType = System.Data.SqlDbType.Bit;
-                    rc.Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add(rc);
+                        SqlParameter rc = new SqlParameter();
+                        rc.ParameterName = "@rc";
+                        rc.SqlDbType = System.Data.SqlDbType.Bit;
+                        rc.Direction = System.Data.ParameterDirection.Output;
+                        cmd.Parameters.Add(rc);
 
-                    cmd.ExecuteNonQuery();
-                    cn.Close();
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
 
-                    if ((bool)cmd.Parameters["@rc"].Value)
-                        System.Windows.MessageBox.Show("Adding apartments complete");
-                    else
-                        System.Windows.MessageBox.Show("Adding error");
+                        if ((bool)cmd.Parameters["@rc"].Value)
+                            System.Windows.MessageBox.Show("Adding apartments complete");
+                        else
+                            System.Windows.MessageBox.Show("Adding error");
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Input Close date");
                 }
             }
-            else
+            catch(Exception ex)
             {
-                System.Windows.MessageBox.Show("Input Close date");
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 

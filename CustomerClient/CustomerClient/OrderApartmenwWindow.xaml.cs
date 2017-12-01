@@ -27,5 +27,7 @@ namespace CustomerClient
             InitializeComponent();
             this.currApartment = JsonConvert.DeserializeObject<Apartment>(apartm);
         }
+
+
     }
 }
