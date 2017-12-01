@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="1000">
     <Grid>
-        <GroupBox FontWeight="Bold" FontSize="16" Foreground="#FFEB77FF" Header="Apartments" HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="767" Margin="215,10,0,0">
+        <GroupBox FontWeight="Bold" FontSize="16" Foreground="#FFEB77FF" Header="Apartments" HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="822" Margin="160,10,0,0">
             <Grid>
-                <DataGrid x:Name="Chats" HorizontalAlignment="Right" VerticalAlignment="Top" Height="421" Width="755">
+                <DataGrid x:Name="Chats" HorizontalAlignment="Right" VerticalAlignment="Top" Height="421" Width="810">
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
 
@@ -18,6 +18,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="City" Width="100" Binding="{Binding Path=City }"/>
                         <DataGridTextColumn Header="Hotel" Width="120" Binding="{Binding Path=Hotel}"/>
+                        <DataGridTextColumn Header="Stars" Width="50" Binding="{Binding Path=Stars}"/>
                         <DataGridTextColumn Header="Cost" Width="100" Binding="{Binding Path=Cost}"/>
                         <DataGridTextColumn Header="Places" Width="100" Binding="{Binding Path=Places}"/>
                         <DataGridTextColumn Header="Free pl" Width="100" Binding="{Binding Path=FreePlaces}"/>
