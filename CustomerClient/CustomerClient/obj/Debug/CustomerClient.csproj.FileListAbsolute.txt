@@ -13,3 +13,7 @@ C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debu
 C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debug\CustomerClient.csproj.CoreCompileInputs.cache
 C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debug\CustomerClient.exe
 C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debug\CustomerClient.pdb
+C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debug\OrderApartmenwWindow.g.cs
+C:\Users\Dmitry\Desktop\Booking_apartment\CustomerClient\CustomerClient\obj\Debug\OrderApartmenwWindow.baml

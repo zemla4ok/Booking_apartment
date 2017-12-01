@@ -12,7 +12,7 @@
                 <DataGrid x:Name="Apartments" HorizontalAlignment="Right" VerticalAlignment="Top" Height="421" Width="810" AutoGenerateColumns="False">
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseLeftButtonUp" Handler="Chat_DoubleClick"/>
+                            <EventSetter Event="MouseLeftButtonUp" Handler="Apart_DoubleClick"/>
                         </Style>
                     </DataGrid.ItemContainerStyle>
                     <DataGrid.Columns>

@@ -1,4 +1,5 @@
 ﻿using hotelClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -48,7 +49,9 @@ namespace CustomerClient
 
         private void Apart_DoubleClick(object sender, RoutedEventArgs e)
         {
-
+            string ap = JsonConvert.SerializeObject((Apartment)this.Apartments.CurrentItem);
+            OrderApartmenwWindow oaw = new OrderApartmenwWindow(ap);
+            oaw.Show();
         }
     }
 }

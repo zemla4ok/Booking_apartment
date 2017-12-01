@@ -17,6 +17,8 @@ namespace CustomerClient
         public int ApartNumber  { get; private set; }
         public string CloseDate { get; private set; }
 
+        public Apartment() { }
+
         public Apartment(string pCity, string pHotel, int pStars, int pCost,
                             int pPlaces, int pFreePlaces, int pApartNum, string pCloseDate)
         {

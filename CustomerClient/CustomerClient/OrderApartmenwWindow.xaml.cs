@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace CustomerClient
     /// </summary>
     public partial class OrderApartmenwWindow : Window
     {
-        public OrderApartmenwWindow()
+        Apartment currApartment = new Apartment();
+
+        public OrderApartmenwWindow(string apartm)
         {
             InitializeComponent();
+            this.currApartment = JsonConvert.DeserializeObject<Apartment>(apartm);
         }
     }
 }
