@@ -1,0 +1,32 @@
+﻿<Window x:Class="CustomerClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomerClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1000">
+    <Grid>
+        <GroupBox FontWeight="Bold" FontSize="16" Foreground="#FFEB77FF" Header="Apartments" HorizontalAlignment="Left" Height="449" VerticalAlignment="Top" Width="767" Margin="215,10,0,0">
+            <Grid>
+                <DataGrid x:Name="Chats" HorizontalAlignment="Right" VerticalAlignment="Top" Height="421" Width="755">
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="City" Width="100" Binding="{Binding Path=City }"/>
+                        <DataGridTextColumn Header="Hotel" Width="120" Binding="{Binding Path=Hotel}"/>
+                        <DataGridTextColumn Header="Cost" Width="100" Binding="{Binding Path=Cost}"/>
+                        <DataGridTextColumn Header="Places" Width="100" Binding="{Binding Path=Places}"/>
+                        <DataGridTextColumn Header="Free pl" Width="100" Binding="{Binding Path=FreePlaces}"/>
+                        <DataGridTextColumn Header="Apart num" Width="100" Binding="{Binding Path=ApartNumber}"/>
+                        <DataGridTextColumn Header="Close date" Width="175" Binding="{Binding Path=ColseDate}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

@@ -12,7 +12,9 @@ GRANT INSERT TO HOTEL_ADMINISTRATOR;
 GRANT ADMINISTER BULK OPERATIONS TO HOTEL_ADMINISTRATOR_LOG;
 
 
---******
+--*******************************************************************
+--*******************************************************************
+--*******************************************************************
 CREATE LOGIN CUSTOMER
 	WITH PASSWORD = '2222',
 	DEFAULT_DATABASE = [BookingApartment],
