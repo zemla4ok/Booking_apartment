@@ -20,3 +20,5 @@ AS BEGIN
 				and a.PLACES = @places and a.CURRENT_COST <= @cost 
 				and a.IS_CLOSE = 0;
 END;
+
+drop proc GetApartmentsByHotelStarsAndPlacesAndCost

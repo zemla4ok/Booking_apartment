@@ -4,11 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerClient"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="OrderApartmenwWindow" Height="400" Width="400">
+        Title="OrderApartmenwWindow" Height="600" Width="600" ResizeMode="NoResize">
     <Grid Background="#FF2A0034">
         <StackPanel>
             <TextBlock FontSize="20" Name="Info" TextAlignment="Center" Foreground="#FFEB77FF"/>
         </StackPanel>
+        <GroupBox Header="Booking info" Foreground="#FFEB77FF" FontSize="20" Height="240" Margin="10,40,10,0" VerticalAlignment="Top">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="49,0,0,0" TextWrapping="Wrap" Text="Arriving date" VerticalAlignment="Top"/>
+                <Calendar Name="ArrivingDate" Margin="10,32,373,0" VerticalAlignment="Top" SelectedDatesChanged="OnArrivingDateChange"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="401,0,0,0" TextWrapping="Wrap" Text="Eviction Date" VerticalAlignment="Top" Width="123"/>
+                <Calendar Name="EvictionDate" HorizontalAlignment="Left" Margin="374,32,0,0" VerticalAlignment="Top" SelectedDatesChanged="OnEvictionDateChange"/>
+
+                <CheckBox Name="IsEarly" Foreground="#FFEB77FF" Content="Early" HorizontalAlignment="Left" Margin="233,170,0,0" VerticalAlignment="Top" Click="OnIsEarlyChanged"/>
+                <CheckBox Name="IsDoseage" Foreground="#FFEB77FF" Content="Doseage" HorizontalAlignment="Left" Margin="233,139,0,0" VerticalAlignment="Top" Click="OnIsDoseageChangeg"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="247,32,0,0" TextWrapping="Wrap" Text="Places" VerticalAlignment="Top"/>
+                <xctk:IntegerUpDown Name="Places" Minimum="1" Value="1" Height="30" Width="120" Margin="224,64,0,112" HorizontalAlignment="Left" ValueChanged="OnPlacesChanged"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox  Header="User info" Foreground="#FFEB77FF" FontSize="20" Height="246" Margin="10,285,10,0" VerticalAlignment="Top">
+            <Grid>
+                <StackPanel Width="200" HorizontalAlignment="Left">
+                    <TextBlock Margin="0,30,0,0" Text="Name: " HorizontalAlignment="Center"/>
+                    <TextBlock Margin="0,30,0,0" Text="Surname: " HorizontalAlignment="Center"/>
+                    <TextBlock Margin="0,30,0,0" Text="Passport number: " HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Width="350" HorizontalAlignment="Right">
+                    <TextBox Name="Name" Width="330" Margin="0,30,0,0" HorizontalAlignment="Center"/>
+                    <TextBox Name="Surname"  Width="330" Margin="0,30,0,0" HorizontalAlignment="Center"/>
+                    <TextBox Name="PassNumb" Width="330" Margin="0,30,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <TextBlock Foreground="#FFEB77FF" FontSize="20" Margin="10,529,0,0" TextWrapping="Wrap" Text="Sum: " Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="49"/>
+        <TextBox Name="Sum" FontWeight="Bold" IsReadOnly="True" Height="20" Width="200" Margin="64,536,330,0" VerticalAlignment="Top"/>
+        <Button FontSize="16" FontWeight="Bold" Content="Accept booking" Background="#FF6B1D78" Foreground="#FFEB77FF" HorizontalAlignment="Left" Margin="430,536,0,0" VerticalAlignment="Top" Width="154" Height="25"/>
+
     </Grid>
 </Window>
