@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApplication2;
 
 namespace CustomerClient
 {
@@ -39,6 +40,8 @@ namespace CustomerClient
 
             this.GetSum();
             this.flag = true;
+            if (this.currApartment.FreePlaces == 0)
+                this.AcBook.IsEnabled = false;
         }
 
         private void GetSum()
@@ -108,15 +111,31 @@ namespace CustomerClient
         }
 
         private void OnArrivingDateChange(object sender, SelectionChangedEventArgs e)
-        {
+        {           
             if (this.flag)
+            {
                 this.GetSum();
+                if (Convert.ToInt32(this.Sum.Text) < 0)
+                    this.AcBook.IsEnabled = false;
+                else
+                    this.AcBook.IsEnabled = true;
+            }
+            if (this.currApartment.FreePlaces == 0)
+                this.AcBook.IsEnabled = false;
         }
 
         private void OnEvictionDateChange(object sender, SelectionChangedEventArgs e)
         {
             if (this.flag)
+            {
                 this.GetSum();
+                if (Convert.ToInt32(this.Sum.Text) < 0)
+                    this.AcBook.IsEnabled = false;
+                else
+                    this.AcBook.IsEnabled = true;
+            }
+            if (this.currApartment.FreePlaces == 0)
+                this.AcBook.IsEnabled = false;
         }
 
         private void OnIsDoseageChangeg(object sender, RoutedEventArgs e)
@@ -127,7 +146,13 @@ namespace CustomerClient
         private void OnPlacesChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (this.flag)
+            {
                 this.GetSum();
+                if (Convert.ToInt32(this.Places.Text) > this.currApartment.FreePlaces)
+                    this.AcBook.IsEnabled = false;
+                else
+                    this.AcBook.IsEnabled = true;
+            }
         }
 
         private void OnIsEarlyChanged(object sender, RoutedEventArgs e)
@@ -135,7 +160,16 @@ namespace CustomerClient
             this.GetSum();
         }
 
+        private void AcceptBooking(object sender, RoutedEventArgs e)
+        {
+            if(Validator.ValidTextBoxes(this.Name.Text, this.Surname.Text, this.PassNumb.Text))
+            {
 
-
+            }
+            else
+            {
+                MessageBox.Show("Input data about yourself");
+            }
+        }
     }
 }

@@ -1,0 +1,5 @@
+CREATE PROCEDURE BookApartments
+
+AS BEGIN
+
+END;

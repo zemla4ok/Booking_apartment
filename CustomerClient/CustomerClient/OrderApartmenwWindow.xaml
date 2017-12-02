@@ -43,7 +43,7 @@
 
         <TextBlock Foreground="#FFEB77FF" FontSize="20" Margin="10,529,0,0" TextWrapping="Wrap" Text="Sum: " Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="49"/>
         <TextBox Name="Sum" FontWeight="Bold" IsReadOnly="True" Height="20" Width="200" Margin="64,536,330,0" VerticalAlignment="Top"/>
-        <Button FontSize="16" FontWeight="Bold" Content="Accept booking" Background="#FF6B1D78" Foreground="#FFEB77FF" HorizontalAlignment="Left" Margin="430,536,0,0" VerticalAlignment="Top" Width="154" Height="25"/>
+        <Button Name="AcBook" FontSize="16" FontWeight="Bold" Content="Accept booking" Background="#FF6B1D78" Foreground="#FFEB77FF" Margin="431,536,9,0" Click="AcceptBooking" Height="25" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
