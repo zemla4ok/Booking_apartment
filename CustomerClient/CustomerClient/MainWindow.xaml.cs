@@ -208,9 +208,9 @@ namespace CustomerClient
         {
             this.Apartments.Items.Clear();
             using (SqlConnection cn = Connector.GetConnection())
-            {
+            { 
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("GetApartmentsByHotelStarsAndPlaces", cn);
+                SqlCommand cmd = new SqlCommand("GetApartmentsByHotelStarsAndPlacesAndCost", cn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlParameter city = new SqlParameter();
