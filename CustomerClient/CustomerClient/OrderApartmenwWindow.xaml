@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="OrderApartmenwWindow" Height="400" Width="400">
     <Grid Background="#FF2A0034">
-        
+        <StackPanel>
+            <TextBlock FontSize="20" Name="Info" TextAlignment="Center" Foreground="#FFEB77FF"/>
+        </StackPanel>
     </Grid>
 </Window>

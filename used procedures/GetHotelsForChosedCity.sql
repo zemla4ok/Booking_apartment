@@ -10,13 +10,10 @@ AS BEGIN
 			a.CURRENT_COST,
 			a.PLACES,
 			a.FREE_PLACES,
-			a.APARTMENTS_NUM,
-			a.CLOSE_DATE
+			a.APARTMENTS_NUM
 			FROM APARTMENTS[a] inner join HOTELS[h] on a.HOTEL_ID = h.ID 
 							   inner join CITY[c] on c.ID = h.CITY_ID 
-			WHERE h.CITY_ID = @city_id;
+			WHERE h.CITY_ID = @city_id and a.IS_CLOSE = 0;
 END;
 
-SELECT * FROM APARTMENTS WHERE HOTEL_ID =  2
-
-SELECT * FROM HOTELS;
+DROP PROCEDURE GetHotelsForChosedCity

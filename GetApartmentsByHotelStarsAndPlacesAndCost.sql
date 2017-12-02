@@ -13,10 +13,10 @@ AS BEGIN
 			a.CURRENT_COST,
 			a.PLACES,
 			a.FREE_PLACES,
-			a.APARTMENTS_NUM,
-			a.CLOSE_DATE
+			a.APARTMENTS_NUM
 			FROM APARTMENTS[a] inner join HOTELS[h] on a.HOTEL_ID = h.ID 
 							   inner join CITY[c] on c.ID = h.CITY_ID 
 			WHERE h.CITY_ID = @city_id and h.STARS = @stars 
-				and a.PLACES = @places and a.CURRENT_COST <= @cost;
+				and a.PLACES = @places and a.CURRENT_COST <= @cost 
+				and a.IS_CLOSE = 0;
 END;

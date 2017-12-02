@@ -5,7 +5,7 @@ CREATE PROCEDURE UpdateApartment
 	@places int,
 	@free_places int,
 	@apart_num int,
-	@close_date date,
+	@is_close bit,
 	@rc bit output
 AS BEGIN
 	SET @rc = 1;
@@ -37,12 +37,9 @@ AS BEGIN
 				WHERE HOTEL_ID = @hotel_id and APARTMENTS_NUM = @apart_num;
 		END
 
-		IF @close_date != ''
-		BEGIN
-			UPDATE APARTMENTS 
-				SET CLOSE_DATE = @close_date
-				WHERE HOTEL_ID = @hotel_id and APARTMENTS_NUM = @apart_num;
-		END
+		UPDATE APARTMENTS 
+			SET IS_CLOSE = @is_close
+			WHERE HOTEL_ID = @hotel_id and APARTMENTS_NUM = @apart_num;
 	END TRY
 	BEGIN CATCH
 		SET @rc = 0;

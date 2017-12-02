@@ -7,7 +7,6 @@ CREATE PROCEDURE addApartmentsFromXML
 @rc bit output
 AS BEGIN
 	SET @rc = 1;
-	--BEGIN TRY
 		declare @city_id int;
 		SET @city_id = (SELECT ID FROM CITY WHERE NAME like @city);
 
@@ -26,14 +25,14 @@ AS BEGIN
 			INSERT INTO @result EXEC(@sql);
 			declare @xml XML = (SELECT TOP 1 x from @result);
 
-			INSERT INTO APARTMENTS (CURRENT_COST, PLACES, FREE_PLACES, HOTEL_ID, APARTMENTS_NUM, CLOSE_DATE)
+			INSERT INTO APARTMENTS (CURRENT_COST, PLACES, FREE_PLACES, HOTEL_ID, APARTMENTS_NUM, IS_CLOSE)
 				SELECT 
 					C3.value('curr_cost[1]', 'INT') As CURRENT_COST,
 					C3.value('places[1]', 'INT') AS PLACES,
 					C3.value('free_places[1]', 'INT') AS FREE_PLACES,
 					@hotel_id,
 					C3.value('apartment_num[1]', 'INT') AS APARTMENTS_NUM,
-					C3.value('(close_date/text())[1]', 'DATE') AS CLOSE_DATE
+					C3.value('is_close[1]', 'BIT') AS IS_CLOSE
 				FROM @xml.nodes('dataroot/apartment') AS T3(C3);
 			
 			DELETE a FROM APARTMENTS a, 
@@ -46,11 +45,6 @@ AS BEGIN
 					  AND a.APARTMENTS_NUM = c.APARTMENTS_NUM
 					  AND a.ID > c.mid
 		COMMIT;
-	--END TRY
-	--BEGIN CATCH
-	--	ROLLBACK;
-	--	SET @rc = 0;
-	--END CATCH
 END;
 
 

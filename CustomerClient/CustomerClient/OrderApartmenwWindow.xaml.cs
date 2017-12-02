@@ -26,6 +26,9 @@ namespace CustomerClient
         {
             InitializeComponent();
             this.currApartment = JsonConvert.DeserializeObject<Apartment>(apartm);
+            this.Info.Text = this.currApartment.Hotel + " " + this.currApartment.Stars 
+                + " Stars hotel in " + this.currApartment.City;
+
         }
 
 

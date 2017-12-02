@@ -17,7 +17,7 @@ CREATE TABLE APARTMENTS(
 	FREE_PLACES int not null,
 	HOTEL_ID int not null,
 	APARTMENTS_NUM int not null,
-	CLOSE_DATE date not null,
+	IS_CLOSE bit not null,
 	primary key(ID),
 	foreign key(HOTEL_ID) references HOTELS(ID));
 

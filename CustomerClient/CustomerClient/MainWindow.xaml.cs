@@ -38,7 +38,7 @@ namespace CustomerClient
                     Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
                         Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
                         Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
-                        Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                        Convert.ToInt32(data[6].ToString()));
                     this.Apartments.Items.Add(ap);
                 }
                 cn.Close();
@@ -91,7 +91,7 @@ namespace CustomerClient
                     Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
                         Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
                         Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
-                        Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                        Convert.ToInt32(data[6].ToString()));
                     this.Apartments.Items.Add(ap);
                 }
                 cn.Close();
@@ -128,7 +128,7 @@ namespace CustomerClient
                     Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
                         Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
                         Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
-                        Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                        Convert.ToInt32(data[6].ToString()));
                     this.Apartments.Items.Add(ap);
                 }
                 cn.Close();
@@ -194,7 +194,7 @@ namespace CustomerClient
                         Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
                             Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
                             Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
-                            Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                            Convert.ToInt32(data[6].ToString()));
                         this.Apartments.Items.Add(ap);
                     }
                     cn.Close();
@@ -239,7 +239,7 @@ namespace CustomerClient
                     Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
                         Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
                         Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
-                        Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                        Convert.ToInt32(data[6].ToString()));
                     this.Apartments.Items.Add(ap);
                 }
                 cn.Close();

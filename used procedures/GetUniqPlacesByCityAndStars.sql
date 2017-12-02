@@ -8,5 +8,7 @@ AS BEGIN
 	SELECT  distinct a.PLACES
 			FROM APARTMENTS[a] inner join HOTELS[h] on a.HOTEL_ID = h.ID 
 							   inner join CITY[c] on c.ID = h.CITY_ID 
-			WHERE h.CITY_ID = @city_id and h.STARS = @stars;
+			WHERE h.CITY_ID = @city_id and h.STARS = @stars and a.IS_CLOSE = 0;
 END;
+
+drop proc GetUniqPlacesByCityAndStars

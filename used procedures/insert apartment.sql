@@ -5,7 +5,7 @@ CREATE PROCEDURE AddApartment
 	@city NVARCHAR(30),
 	@hotel NVARCHAR(50),
 	@apartment_num INT,
-	@close_date date,
+	@is_close bit,
 	@rc bit output
 	AS BEGIN
 		SET @rc = 0;
@@ -21,25 +21,13 @@ CREATE PROCEDURE AddApartment
 					SET @hotel_id = (SELECT ID FROM HOTELS WHERE NAME like @hotel and CITY_ID = @city_id);
 					IF NOT EXISTS(SELECT ID FROM APARTMENTS WHERE HOTEL_ID = @hotel_id and APARTMENTS_NUM = @apartment_num)
 					BEGIN
-						INSERT INTO APARTMENTS(CURRENT_COST, PLACES, FREE_PLACES, HOTEL_ID, APARTMENTS_NUM, CLOSE_DATE)
-							VALUES(@curr_cost, @places, @free_places, @hotel_id, @apartment_num, @close_date);
+						INSERT INTO APARTMENTS(CURRENT_COST, PLACES, FREE_PLACES, HOTEL_ID, APARTMENTS_NUM, IS_CLOSE)
+							VALUES(@curr_cost, @places, @free_places, @hotel_id, @apartment_num, @is_close);
 							SET @rc = 1;
 					END
 				END
 			END
 		END
 	END;
-
-exec AddApartment
-	@curr_cost = 100,
-	@places = 5,
-	@free_places = 2,
-	@hotel = 'slm',
-	@city = 'slm',
-	@apartment_num = 200,
-	@close_date = '10.11.1997',
-	@rc =1;
-
-select * from APARTMENTS;
 
 drop procedure AddApartment;
