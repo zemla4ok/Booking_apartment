@@ -56,6 +56,8 @@ namespace CustomerClient
                 }
                 cn.Close();
             }
+            //load stars
+
         }
 
         private void Apart_DoubleClick(object sender, RoutedEventArgs e)
@@ -68,7 +70,6 @@ namespace CustomerClient
         private void GetCityHotels(object sender, SelectionChangedEventArgs e)
         {
             this.Apartments.Items.Clear();
-            this.Hotel.Items.Clear();
             using (SqlConnection cn = Connector.GetConnection())
             {
                 cn.Open();
@@ -88,35 +89,78 @@ namespace CustomerClient
                         Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
                         Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
                     this.Apartments.Items.Add(ap);
-                }                
+                }
                 cn.Close();
             }
-            try
-            {
-                using (SqlConnection cn = Connector.GetConnection())
-                {
-                    cn.Open();
-                    SqlCommand cmd = new SqlCommand("GetUniqHotelsForChosedCity", cn);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    SqlParameter city = new SqlParameter();
-                    city.ParameterName = "@city";
-                    city.Value = this.City.SelectedItem.ToString();
-                    cmd.Parameters.Add(city);
-
-                    SqlDataReader data = cmd.ExecuteReader();
-                    while (data.Read())
-                    {
-                        this.Hotel.Items.Add(data[0].ToString());
-                    }
-                    cn.Close();
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            this.Hotel.IsEnabled = true;
+            this.Stars.Items.Add("1");
+            this.Stars.Items.Add("2");
+            this.Stars.Items.Add("3");
+            this.Stars.Items.Add("4");
+            this.Stars.Items.Add("5");
+            this.Stars.IsEnabled = true;
         }
+
+        private void OnChangeStars(object sender, SelectionChangedEventArgs e)
+        {
+            this.Apartments.Items.Clear();
+            this.Places.Items.Clear();
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("GetApartmentsByHotelStars", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter city = new SqlParameter();
+                city.ParameterName = "@city";
+                city.Value = this.City.Text;
+                cmd.Parameters.Add(city);
+
+                SqlParameter stars = new SqlParameter();
+                stars.ParameterName = "@stars";
+                stars.Value = this.Stars.SelectedItem.ToString();
+                cmd.Parameters.Add(stars);
+
+                SqlDataReader data = cmd.ExecuteReader();
+                while (data.Read())
+                {
+                    Apartment ap = new Apartment(data[0].ToString(), data[1].ToString(),
+                        Convert.ToInt32(data[2].ToString()), Convert.ToInt32(data[3].ToString()),
+                        Convert.ToInt32(data[4].ToString()), Convert.ToInt32(data[5].ToString()),
+                        Convert.ToInt32(data[6].ToString()), data[7].ToString().Substring(0, 10));
+                    this.Apartments.Items.Add(ap);
+                }
+                cn.Close();
+            }
+
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("GetUniqPlacesByCityAndStars", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter city = new SqlParameter();
+                city.ParameterName = "@city";
+                city.Value = this.City.Text;
+                cmd.Parameters.Add(city);
+
+                SqlParameter stars = new SqlParameter();
+                stars.ParameterName = "@stars";
+                stars.Value = this.Stars.SelectedItem.ToString();
+                cmd.Parameters.Add(stars);
+
+                SqlDataReader data = cmd.ExecuteReader();
+                while (data.Read())
+                {
+                    this.Places.Items.Add(data[0].ToString());
+                }
+                cn.Close();
+            }
+            this.Places.IsEnabled = true;
+        }
+
+
+
+
+
     }
 }

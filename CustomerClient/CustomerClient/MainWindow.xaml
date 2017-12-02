@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerClient"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="1000" ResizeMode="NoResize">
     <Grid>
@@ -33,9 +34,15 @@
                 <StackPanel>
                     <TextBlock Text="City" Padding="10,0,0,0" Margin="0,5,0,0"/>
                     <ComboBox Name="City" Margin="0,5,0,0" SelectionChanged="GetCityHotels"/>
+                    
+                    <TextBlock Text="Stars" Padding="10,0,0,0" Margin="0,5,0,0"/>
+                    <ComboBox IsEnabled="False" Name="Stars" Margin="0,5,0,0" SelectionChanged="OnChangeStars"/>
 
-                    <TextBlock Text="Hotel" Padding="10,0,0,0" Margin="0,5,0,0"/>
-                    <ComboBox IsEnabled="False" Name="Hotel" Margin="0,5,0,0"/>
+                    <TextBlock Text="Places" Padding="10,0,0,0" Margin="0,5,0,0"/>
+                    <ComboBox IsEnabled="False" Name="Places" Margin="0,5,0,0"/>
+
+                    <TextBlock Text="Max cost" Padding="10,0,0,0" Margin="0,5,0,0"/>
+                    <xctk:IntegerUpDown IsEnabled="False" Minimum="0" Value="100"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
