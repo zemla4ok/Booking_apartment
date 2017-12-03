@@ -447,6 +447,37 @@ namespace hotelClient
                 cn.Close();
 
                 this.Sum.Text = cmd.Parameters["@rc"].Value.ToString();
+                if (cmd.Parameters["@rc"].Value.ToString().Length != 0)
+                    this.Evict.IsEnabled = true;
+            }
+        }
+
+        private void EvictClient(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("EvictClient", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter ord_num = new SqlParameter();
+                ord_num.ParameterName = "@book_id";
+                ord_num.Value = this.OrdNum.Text;
+                cmd.Parameters.Add(ord_num);
+
+                SqlParameter rc = new SqlParameter();
+                rc.ParameterName = "@rc";
+                rc.SqlDbType = System.Data.SqlDbType.Bit;
+                rc.Direction = System.Data.ParameterDirection.Output;
+                cmd.Parameters.Add(rc);
+
+                cmd.ExecuteNonQuery();
+                cn.Close();
+
+                if ((bool)cmd.Parameters["@rc"].Value)
+                    System.Windows.MessageBox.Show("Eviction Successfull");
+                else
+                    System.Windows.MessageBox.Show("Error");
             }
         }
     }

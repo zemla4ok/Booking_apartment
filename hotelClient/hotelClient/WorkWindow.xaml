@@ -94,6 +94,8 @@
                             <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="44,80,0,0" TextWrapping="Wrap" Text="Sum: " VerticalAlignment="Top"/>
                             <TextBox Name="Sum" IsReadOnly="True" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="124,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
 
+                            <Button Name="Evict" IsEnabled="False" Content="EVICT CLIENT" Background="#FF6B1D78" Foreground="#FFEB77FF" HorizontalAlignment="Left" Margin="104,119,0,0" VerticalAlignment="Top" Width="120" Click="EvictClient"/>
+                            
 
                         </Grid>
                     </GroupBox>
