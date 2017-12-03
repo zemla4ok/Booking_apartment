@@ -78,7 +78,6 @@
                             <TextBlock HorizontalAlignment="Left" Margin="179,275,0,0" TextWrapping="Wrap" Text="Free places" VerticalAlignment="Top" Foreground="Black" FontFamily="Times New Roman" FontSize="14"/>
                             <xctk:IntegerUpDown x:Name="FreePlacesUpd" Value="-1" Minimum="-1" Margin="179,296,21,72"/>
                             <Button  Background="#FF6B1D78" Foreground="#FFEB77FF" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold" Content="UPDATE" Margin="76,349,73,10" Click="UpdateApartment"/>
-
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Settle into an apartment" Height="205" Margin="337,10,10,0" VerticalAlignment="Top">
@@ -88,10 +87,16 @@
                     </GroupBox>
                     <GroupBox Header="Evict from an apartment" Height="211" Margin="337,220,10,0" VerticalAlignment="Top">
                         <Grid>
-                            
+                            <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Order number" VerticalAlignment="Top" Height="23" Width="109"/>
+                            <TextBox Name="OrdNum" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="124,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
+
+                            <Button Content="GET SUM" Background="#FF6B1D78" Foreground="#FFEB77FF" HorizontalAlignment="Left" Margin="104,49,0,0" VerticalAlignment="Top" Width="120" Click="GetSum"/>
+                            <TextBlock FontSize="15" HorizontalAlignment="Left" Margin="44,80,0,0" TextWrapping="Wrap" Text="Sum: " VerticalAlignment="Top"/>
+                            <TextBox Name="Sum" IsReadOnly="True" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="124,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
+
+
                         </Grid>
                     </GroupBox>
-
                 </Grid>
             </TabItem>
             <TabItem Width="115" Height="20" Header="Hotel apartments" FontWeight="Bold" Background="#FF2A0034" Foreground="#FFEB77FF">

@@ -14,7 +14,9 @@ AS BEGIN
 		   al.ARRIVIG_DATE,
 		   al.EVICTION_DATE,
 		   al.RESERVATION_DATE,
-		   al.IS_EARLY
+		   al.IS_EARLY,
+		   al.ID
 		   FROM APARTMENT_LIST [al] inner join APARTMENTS [a] on al.APARTMENTS_ID = a.ID WHERE a.HOTEL_ID = 1;								
 END;
 
+drop proc GetBookingListForCurrentHotel

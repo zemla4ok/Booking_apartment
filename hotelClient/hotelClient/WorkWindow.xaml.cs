@@ -372,7 +372,7 @@ namespace hotelClient
             this.BookedApartments.Children.Clear();
             TextBlock tb = new TextBlock();
             tb.Style = this.FindResource("1") as Style;
-            tb.Text = "APARTMENT NUM" + "\t" + "COST" + "\t" + "PLACES" + "\t\t" + 
+            tb.Text = "ID" + "\t" + "APART NUM" + "\t" + "COST" + "\t" + "PLACES" + "\t\t" + 
                 "ARR DATE" + "\t" + "EVIC DATE" + "\t" + "RESERV DATE" + "\t" + "EARLY";           
             this.BookedApartments.Children.Add(tb);
 
@@ -405,7 +405,8 @@ namespace hotelClient
                         str = "No";
                     tb = new TextBlock();
                     tb.Style = this.FindResource("1") as Style;
-                    tb.Text = "\t" + data[0].ToString() +
+                    tb.Text = data[7].ToString() +
+                              "\t        " + data[0].ToString() +
                               "\t\t" + data[1].ToString() +
                               "\t     " + data[2].ToString() +
                               "\t\t" + data[3].ToString().Substring(0, 10) +
@@ -421,6 +422,32 @@ namespace hotelClient
         private void RefreshBookedList(object sender, RoutedEventArgs e)
         {
             this.GetBookedApartments();
+        }
+
+        private void GetSum(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("GetSumForEviction", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlParameter ord_num = new SqlParameter();
+                ord_num.ParameterName = "@book_id";
+                ord_num.Value = this.OrdNum.Text;
+                cmd.Parameters.Add(ord_num);
+
+                SqlParameter rc = new SqlParameter();
+                rc.ParameterName = "@rc";
+                rc.SqlDbType = System.Data.SqlDbType.Int;
+                rc.Direction = System.Data.ParameterDirection.Output;
+                cmd.Parameters.Add(rc);
+
+                cmd.ExecuteNonQuery();
+                cn.Close();
+
+                this.Sum.Text = cmd.Parameters["@rc"].Value.ToString();
+            }
         }
     }
 }
