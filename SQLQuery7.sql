@@ -34,5 +34,7 @@ AS BEGIN
 				@koeff * @cost;					
 END;
 
+drop proc GetSumForOrder
 
-
+SELECT * FROM Users
+SELECT * FROM APARTMENT_LIST

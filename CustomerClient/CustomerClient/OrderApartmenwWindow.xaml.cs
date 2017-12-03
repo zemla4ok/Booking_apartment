@@ -111,7 +111,7 @@ namespace CustomerClient
         }
 
         private void OnArrivingDateChange(object sender, SelectionChangedEventArgs e)
-        {           
+        {
             if (this.flag)
             {
                 this.GetSum();
@@ -162,9 +162,106 @@ namespace CustomerClient
 
         private void AcceptBooking(object sender, RoutedEventArgs e)
         {
-            if(Validator.ValidTextBoxes(this.Name.Text, this.Surname.Text, this.PassNumb.Text))
+            if (Validator.ValidTextBoxes(this.Name.Text, this.Surname.Text, this.PassNumb.Text))
             {
+                try
+                {
+                    using (SqlConnection cn = Connector.GetConnection())
+                    {
+                        cn.Open();
+                        SqlCommand cmd = new SqlCommand("BookApartments", cn);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+                        SqlParameter city = new SqlParameter();
+                        city.ParameterName = "@city";
+                        city.Value = this.currApartment.City;
+                        cmd.Parameters.Add(city);
+
+                        SqlParameter hotel = new SqlParameter();
+                        hotel.ParameterName = "@hotel";
+                        hotel.Value = this.currApartment.Hotel;
+                        cmd.Parameters.Add(hotel);
+
+                        SqlParameter apart_num = new SqlParameter();
+                        apart_num.ParameterName = "@apart_num";
+                        apart_num.Value = this.currApartment.ApartNumber;
+                        cmd.Parameters.Add(apart_num);
+
+                        SqlParameter free_places = new SqlParameter();
+                        free_places.ParameterName = "@free_pl";
+                        free_places.Value = this.currApartment.FreePlaces;
+                        cmd.Parameters.Add(free_places);
+
+                        SqlParameter user_name = new SqlParameter();
+                        user_name.ParameterName = "@user_name";
+                        user_name.Value = this.Name.Text;
+                        cmd.Parameters.Add(user_name);
+
+                        SqlParameter user_surname = new SqlParameter();
+                        user_surname.ParameterName = "@user_surname";
+                        user_surname.Value = this.Surname.Text;
+                        cmd.Parameters.Add(user_surname);
+
+                        SqlParameter passp_num = new SqlParameter();
+                        passp_num.ParameterName = "@passport_num";
+                        passp_num.Value = this.PassNumb.Text;
+                        cmd.Parameters.Add(passp_num);
+
+                        SqlParameter cost = new SqlParameter();
+                        cost.ParameterName = "@cost";
+                        cost.Value = this.currApartment.Cost;
+                        cmd.Parameters.Add(cost);
+
+                        SqlParameter arr_date = new SqlParameter();
+                        arr_date.ParameterName = "@arr_date";
+                        arr_date.Value = this.ArrivingDate.SelectedDate.ToString().Substring(0, 10);
+                        cmd.Parameters.Add(arr_date);
+
+                        SqlParameter evic_date = new SqlParameter();
+                        evic_date.ParameterName = "@evic_date";
+                        evic_date.Value = this.EvictionDate.SelectedDate.ToString().Substring(0, 10);
+                        cmd.Parameters.Add(evic_date);
+
+                        SqlParameter is_early = new SqlParameter();
+                        is_early.ParameterName = "@is_early";
+                        is_early.Value = this.IsEarly.IsChecked;
+                        cmd.Parameters.Add(is_early);
+
+                        SqlParameter is_doseage = new SqlParameter();
+                        is_doseage.ParameterName = "@is_doseeage";
+                        is_doseage.Value = this.IsDoseage.IsChecked;
+                        cmd.Parameters.Add(is_doseage);
+
+                        SqlParameter res_pl = new SqlParameter();
+                        res_pl.ParameterName = "@reserv_places";
+                        res_pl.Value = this.Places.Text;
+                        cmd.Parameters.Add(res_pl);
+
+                        SqlParameter rc = new SqlParameter();
+                        rc.ParameterName = "@rc";
+                        rc.SqlDbType = System.Data.SqlDbType.Bit;
+                        rc.Direction = System.Data.ParameterDirection.Output;
+                        cmd.Parameters.Add(rc);
+
+                        cmd.ExecuteNonQuery();
+
+                        if ((bool)cmd.Parameters["@rc"].Value)
+                        {
+                            MessageBox.Show("Booking is succesfull");
+                        }
+                        else
+                        { 
+                            MessageBox.Show("Error");
+                        }
+
+
+                        cn.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
