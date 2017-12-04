@@ -25,6 +25,7 @@ namespace hotelClient
         private string CityName { get; set; }
         private string HotelName { get; set; }
         private string FileName { get; set; }
+        private string FileNameExport { get; set; }
 
         public WorkWindow(string pCity, string pHotel)
         {
@@ -544,6 +545,45 @@ namespace hotelClient
             else
             {
                 System.Windows.MessageBox.Show("Enter data");
+            }
+        }
+
+        private void ChooseApartToExport(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.CheckFileExists = true;
+            dlg.Multiselect = false;
+            if (dlg.ShowDialog() == true)
+            {
+                this.FileNameExport = dlg.FileName;
+                this.Path2.Text = dlg.FileName;
+                this.ExportToXML.IsEnabled = true;
+            }
+        }
+
+        private void OnExportToXML(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection cn = Connector.GetConnection())
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("ExportToXML", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@path", this.FileNameExport);
+
+                SqlParameter rc = new SqlParameter();
+                rc.ParameterName = "@rc";
+                rc.SqlDbType = System.Data.SqlDbType.Bit;
+                rc.Direction = System.Data.ParameterDirection.Output;
+                cmd.Parameters.Add(rc);
+
+                cmd.ExecuteNonQuery();
+                cn.Close();
+
+                if ((bool)cmd.Parameters["@rc"].Value)
+                    System.Windows.MessageBox.Show("Export is Successfull");
+                else
+                    System.Windows.MessageBox.Show("Error");
             }
         }
     }

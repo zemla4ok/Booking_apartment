@@ -23,3 +23,5 @@ AS BEGIN
 END;
 
 drop proc GetBookingListForCurrentHotel
+
+SELECT * FROM APARTMENT_LIST
