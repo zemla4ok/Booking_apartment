@@ -372,50 +372,68 @@ namespace hotelClient
             this.BookedApartments.Children.Clear();
             TextBlock tb = new TextBlock();
             tb.Style = this.FindResource("1") as Style;
-            tb.Text = "ID" + "\t" + "APART NUM" + "\t" + "COST" + "\t" + "PLACES" + "\t\t" + 
-                "ARR DATE" + "\t" + "EVIC DATE" + "\t" + "RESERV DATE" + "\t" + "EARLY";           
+            tb.Text = "ID" + "\t" + "APART NUM" + "\t" + "COST" + "\t" + "PLACES" + "\t   " + 
+                "ARR DATE" + "\t" + "EVIC DATE" + "\t" + "RESERV DATE" + "\t" + "EARLY" + "\t" + "EVICTED";           
             this.BookedApartments.Children.Add(tb);
 
-            using (SqlConnection cn = Connector.GetConnection())
+            try
             {
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("GetBookingListForCurrentHotel", cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                SqlParameter hotel = new SqlParameter();
-                hotel.ParameterName = "@hotel";
-                hotel.Value = this.HotelName;
-
-                SqlParameter city = new SqlParameter();
-                city.ParameterName = "@city";
-                city.Value = this.CityName;
-
-                cmd.Parameters.Add(hotel);
-                cmd.Parameters.Add(city);
-
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                SqlDataReader data = cmd.ExecuteReader();
-
-                while (data.Read())
+                using (SqlConnection cn = Connector.GetConnection())
                 {
-                    string str;
-                    if (Convert.ToBoolean(data[6].ToString()))
-                        str = "Yes";
-                    else
-                        str = "No";
-                    tb = new TextBlock();
-                    tb.Style = this.FindResource("1") as Style;
-                    tb.Text = data[7].ToString() +
-                              "\t        " + data[0].ToString() +
-                              "\t\t" + data[1].ToString() +
-                              "\t     " + data[2].ToString() +
-                              "\t\t" + data[3].ToString().Substring(0, 10) +
-                              "\t" + data[4].ToString().Substring(0, 10) +
-                              "\t  " + data[5].ToString().Substring(0, 10) +
-                              "\t   " + str;
-                    this.BookedApartments.Children.Add(tb);
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("GetBookingListForCurrentHotel", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    SqlParameter hotel = new SqlParameter();
+                    hotel.ParameterName = "@hotel";
+                    hotel.Value = this.HotelName;
+
+                    SqlParameter city = new SqlParameter();
+                    city.ParameterName = "@city";
+                    city.Value = this.CityName;
+
+                    SqlParameter is_evic = new SqlParameter();
+                    is_evic.ParameterName = "@is_evic";
+                    is_evic.Value = this.IsEvicted.IsChecked == true ? true : false;
+
+                    cmd.Parameters.Add(hotel);
+                    cmd.Parameters.Add(city);
+                    cmd.Parameters.Add(is_evic);
+
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlDataReader data = cmd.ExecuteReader();
+
+                    while (data.Read())
+                    {
+                        string str;
+                        if (Convert.ToBoolean(data[6].ToString()))
+                            str = "Yes";
+                        else
+                            str = "No";
+                        string str1;
+                        if (Convert.ToBoolean(data[8].ToString()))
+                            str1 = "Yes";
+                        else
+                            str1 = "No";
+                        tb = new TextBlock();
+                        tb.Style = this.FindResource("1") as Style;
+                        tb.Text = data[7].ToString() +
+                                  "\t        " + data[0].ToString() +
+                                  "\t\t" + data[1].ToString() +
+                                  "\t     " + data[2].ToString() +
+                                  "\t" + data[3].ToString().Substring(0, 10) +
+                                  "\t" + data[4].ToString().Substring(0, 10) +
+                                  "\t  " + data[5].ToString().Substring(0, 10) +
+                                  "\t   " + str +
+                                  "\t    " + str1;
+                        this.BookedApartments.Children.Add(tb);
+                    }
+                    cn.Close();
                 }
-                cn.Close();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 

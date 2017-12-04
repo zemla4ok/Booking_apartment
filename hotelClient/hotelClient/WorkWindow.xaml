@@ -143,7 +143,9 @@
 
                         </StackPanel>
                     </ScrollViewer>
-                    <Button Background="#FF6B1D78" Foreground="#FFEB77FF" Content="REFRESH" Height="20" VerticalAlignment="Bottom" Click="RefreshBookedList"/>
+                    <Button Background="#FF6B1D78" Foreground="#FFEB77FF" Content="REFRESH" Height="20" VerticalAlignment="Bottom" Click="RefreshBookedList" Margin="0,0,86,0"/>
+                    <CheckBox Name="IsEvicted" FontSize="15" Content="Evicted" Margin="605,415,0,0" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="71"/>
+
                 </Grid>
             </TabItem>
         </TabControl>

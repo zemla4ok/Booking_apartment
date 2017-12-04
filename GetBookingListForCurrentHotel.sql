@@ -1,6 +1,7 @@
 CREATE PROCEDURE GetBookingListForCurrentHotel
 	@city nvarchar(30),
-	@hotel nvarchar(50)
+	@hotel nvarchar(50),
+	@is_evic bit
 AS BEGIN
 	declare @city_id int;
 	set @city_id = (SELECT ID FROM CITY WHERE NAME like @city);
@@ -15,8 +16,10 @@ AS BEGIN
 		   al.EVICTION_DATE,
 		   al.RESERVATION_DATE,
 		   al.IS_EARLY,
-		   al.ID
-		   FROM APARTMENT_LIST [al] inner join APARTMENTS [a] on al.APARTMENTS_ID = a.ID WHERE a.HOTEL_ID = 1;								
+		   al.ID,
+		   al.IS_EVICTED
+		   FROM APARTMENT_LIST [al] inner join APARTMENTS [a] on al.APARTMENTS_ID = a.ID 
+				WHERE a.HOTEL_ID = 1 and al.IS_EVICTED = @is_evic;								
 END;
 
 drop proc GetBookingListForCurrentHotel
