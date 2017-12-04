@@ -53,8 +53,8 @@ AS BEGIN
 			set @user_id = (SELECT ID FROM USERS WHERE PASSPORT_NUM = @passport_num);
 
 
-			INSERT INTO APARTMENT_LIST(APARTMENTS_ID, USERS_ID, DEFAULT_COST, ARRIVIG_DATE, EVICTION_DATE, IS_EARLY, IS_DOSEAGE, RESERVED_PLACES, RESERVATION_DATE)
-				VALUES(@apart_id, @user_id, @cost, @arr_date, @evic_date, @is_early, @is_doseeage, @reserv_places, GETDATE());
+			INSERT INTO APARTMENT_LIST(APARTMENTS_ID, USERS_ID, DEFAULT_COST, ARRIVIG_DATE, EVICTION_DATE, IS_EARLY, IS_DOSEAGE, RESERVED_PLACES, RESERVATION_DATE, IS_EVICTED)
+				VALUES(@apart_id, @user_id, @cost, @arr_date, @evic_date, @is_early, @is_doseeage, @reserv_places, GETDATE(), 0);
 		COMMIT		
 	--END TRY
 	--BEGIN CATCH

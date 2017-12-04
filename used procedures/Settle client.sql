@@ -54,9 +54,11 @@ AS BEGIN
 
 
 	INSERT INTO APARTMENT_LIST(APARTMENTS_ID, USERS_ID, DEFAULT_COST, ARRIVIG_DATE, EVICTION_DATE, IS_EARLY,
-										IS_DOSEAGE, RESERVED_PLACES, RESERVATION_DATE)
+										IS_DOSEAGE, RESERVED_PLACES, RESERVATION_DATE, IS_EVICTED)
 					VALUES(@apart_id, @user_id, @cost, CAST(GETDATE() as date), CAST(GETDATE() as date), 0,
-										@is_doseage, @reserv_places,CAST(GETDATE() as date));
+										@is_doseage, @reserv_places,CAST(GETDATE() as date), 0);
 	COMMIT
 	set @rc = 1;
 END;
+
+drop proc SettleClient
