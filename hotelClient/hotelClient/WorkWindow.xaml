@@ -82,7 +82,22 @@
                     </GroupBox>
                     <GroupBox Header="Settle into an apartment" Height="205" Margin="337,10,10,0" VerticalAlignment="Top">
                         <Grid>
-
+                            <StackPanel Width="160" HorizontalAlignment="Left">
+                                <TextBlock Text="Client name" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="15"/>
+                                <TextBox Name="SetName" Margin="0,5,0,0" HorizontalContentAlignment="Center"/>
+                                <TextBlock Text="Client surname" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="15"/>
+                                <TextBox Name="SetSurname" HorizontalContentAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock Text="Passport number" FontSize="15" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBox Name="SetPasspNum" Margin="0,5,0,0" HorizontalContentAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" Width="160">
+                                <TextBlock Text="Apartment number" FontSize="15" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+                                <TextBox Name="SetApartNum" HorizontalContentAlignment="Center" Margin="0,5,0,0"/>
+                                <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" Text="Places" FontSize="15"/>
+                                <TextBox Name="SetPlaces" Margin="0,5,0,0" HorizontalContentAlignment="Center"/>
+                                <CheckBox Name="SetIsDos" Margin="0,5,0,0" Content="is doseage" HorizontalAlignment="Center"/>
+                                <Button Margin="0,10,0,0" Content="SETTLE CLIENT" Background="#FF6B1D78" Foreground="#FFEB77FF" Click="SettleClient"/>
+                            </StackPanel>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Evict from an apartment" Height="211" Margin="337,220,10,0" VerticalAlignment="Top">
@@ -95,8 +110,6 @@
                             <TextBox Name="Sum" IsReadOnly="True" FontSize="15" HorizontalAlignment="Left" Height="23" Margin="124,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
 
                             <Button Name="Evict" IsEnabled="False" Content="EVICT CLIENT" Background="#FF6B1D78" Foreground="#FFEB77FF" HorizontalAlignment="Left" Margin="104,119,0,0" VerticalAlignment="Top" Width="120" Click="EvictClient"/>
-                            
-
                         </Grid>
                     </GroupBox>
                 </Grid>

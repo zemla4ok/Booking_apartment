@@ -39,6 +39,7 @@ CREATE TABLE APARTMENT_LIST(
 	IS_DOSEAGE bit not null,
 	RESERVED_PLACES int not null,
 	RESERVATION_DATE date not null,
+	IS_EVICTED bit not null,
 	primary key(ID),
 	foreign key(APARTMENTS_ID) references APARTMENTS(ID),
 	foreign key(USERS_ID) references USERS(ID));

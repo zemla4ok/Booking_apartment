@@ -480,5 +480,53 @@ namespace hotelClient
                     System.Windows.MessageBox.Show("Error");
             }
         }
+
+        private void SettleClient(object sender, RoutedEventArgs e)
+        {
+            if(Validator.ValidTextBoxes(this.SetName.Text, this.SetSurname.Text, this.SetPasspNum.Text,
+                this.SetApartNum.Text, this.SetPlaces.Text))
+            {
+                try
+                {
+                    using (SqlConnection cn = Connector.GetConnection())
+                    {
+                        cn.Open();
+                        SqlCommand cmd = new SqlCommand("SettleClient", cn);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@city_name", this.CityName);
+                        cmd.Parameters.AddWithValue("@hotel_name", this.HotelName);
+                        cmd.Parameters.AddWithValue("@apart_num", this.SetApartNum.Text);
+                        cmd.Parameters.AddWithValue("@user_name", this.SetName.Text);
+                        cmd.Parameters.AddWithValue("@user_surname", this.SetSurname.Text);
+                        cmd.Parameters.AddWithValue("@passport_num", this.SetPasspNum.Text);
+                        cmd.Parameters.AddWithValue("@reserv_places", this.SetPlaces.Text);
+                        cmd.Parameters.AddWithValue("@is_doseage", this.SetIsDos.IsChecked == true ? true : false);
+
+                        SqlParameter rc = new SqlParameter();
+                        rc.ParameterName = "@rc";
+                        rc.SqlDbType = System.Data.SqlDbType.Bit;
+                        rc.Direction = System.Data.ParameterDirection.Output;
+                        cmd.Parameters.Add(rc);
+
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
+
+                        if ((bool)cmd.Parameters["@rc"].Value)
+                            System.Windows.MessageBox.Show("Settling Successfull");
+                        else
+                            System.Windows.MessageBox.Show("Error");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Enter data");
+            }
+        }
     }
 }
