@@ -4,10 +4,8 @@ CREATE PROCEDURE	GetApartmentsForThisHotel
 AS BEGIN
 	declare @city_id int;
 	set @city_id = (SELECT ID FROM CITY WHERE NAME like @city);
-
 	declare @hotel_id int;
 	set @hotel_id = (SELECT ID FROM HOTELS WHERE NAME like @hotel and CITY_ID = @city_id);
-	
 	SELECT 
 		CURRENT_COST,
 		PLACES,

@@ -19,7 +19,8 @@ AS BEGIN
 			declare @result table(x xml);
 			declare @sql nvarchar(300)=
 				'SELECT 
-					CAST(REPLACE(CAST(x AS VARCHAR(MAX)), ''encoding="utf-16"'', ''encoding="utf-8"'') AS XML)
+					CAST(REPLACE(CAST(x AS VARCHAR(MAX)), ''encoding="utf-16"'', 
+					''encoding="utf-8"'') AS XML)
 					FROM OPENROWSET(BULK '''+@path+''', SINGLE_BLOB) AS T(x)';
 			
 			INSERT INTO @result EXEC(@sql);
@@ -46,12 +47,6 @@ AS BEGIN
 					  AND a.ID > c.mid
 		COMMIT;
 END;
-
-
-
-
-select * from APARTMENTS
-delete APARTMENTS;
 
 
 exec addApartmentsFromXML

@@ -12,7 +12,6 @@ CREATE PROCEDURE Registration
 			exec InsrtCity @name=@city;
 		END
 		SET @city_id = (SELECT ID FROM CITY WHERE NAME = @city);
-
 		IF NOT EXISTS (SELECT ID FROM HOTELS WHERE CITY_ID = @city_id and NAME = @name)
 		BEGIN
 			INSERT INTO HOTELS (NAME, STARS, CITY_ID, HOTEL_PASSWORD)

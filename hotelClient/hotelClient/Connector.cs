@@ -9,8 +9,8 @@ namespace hotelClient
 {
     static class Connector
     {
-        //const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;User Id=HOTEL_ADMINISTRATOR_LOG; Password=1111";
-        const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;Integrated Security=True";
+        const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;User Id=HOTEL_ADMINISTRATOR_LOG; Password=1111";
+        //const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;Integrated Security=True";
 
         static public SqlConnection GetConnection()
         {

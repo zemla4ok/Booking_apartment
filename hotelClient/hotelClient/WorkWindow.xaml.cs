@@ -34,6 +34,7 @@ namespace hotelClient
             this.HotelName = pHotel;
             this.GetApartments();
             this.GetBookedApartments();
+            this.SetEvicDate.DisplayDateStart = DateTime.Today.AddDays(1);
         }
 
         private void AddApartment(object sender, RoutedEventArgs e)
@@ -122,9 +123,7 @@ namespace hotelClient
         {
             try
             {
-
-
-                using (SqlConnection cn = Connector.GetConnection())
+                using (SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;Integrated Security=True"))
                 {
                     cn.Open();
                     SqlCommand cmd = new SqlCommand("addApartmentsFromXML", cn);
@@ -445,6 +444,7 @@ namespace hotelClient
 
         private void GetSum(object sender, RoutedEventArgs e)
         {
+
             using (SqlConnection cn = Connector.GetConnection())
             {
                 cn.Open();
@@ -473,36 +473,43 @@ namespace hotelClient
 
         private void EvictClient(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection cn = Connector.GetConnection())
+            try
             {
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("EvictClient", cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                using (SqlConnection cn = Connector.GetConnection())
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("EvictClient", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                SqlParameter ord_num = new SqlParameter();
-                ord_num.ParameterName = "@book_id";
-                ord_num.Value = this.OrdNum.Text;
-                cmd.Parameters.Add(ord_num);
+                    SqlParameter ord_num = new SqlParameter();
+                    ord_num.ParameterName = "@book_id";
+                    ord_num.Value = this.OrdNum.Text;
+                    cmd.Parameters.Add(ord_num);
 
-                SqlParameter rc = new SqlParameter();
-                rc.ParameterName = "@rc";
-                rc.SqlDbType = System.Data.SqlDbType.Bit;
-                rc.Direction = System.Data.ParameterDirection.Output;
-                cmd.Parameters.Add(rc);
+                    SqlParameter rc = new SqlParameter();
+                    rc.ParameterName = "@rc";
+                    rc.SqlDbType = System.Data.SqlDbType.Bit;
+                    rc.Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add(rc);
 
-                cmd.ExecuteNonQuery();
-                cn.Close();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
 
-                if ((bool)cmd.Parameters["@rc"].Value)
-                    System.Windows.MessageBox.Show("Eviction Successfull");
-                else
-                    System.Windows.MessageBox.Show("Error");
+                    if ((bool)cmd.Parameters["@rc"].Value)
+                        System.Windows.MessageBox.Show("Eviction Successfull");
+                    else
+                        System.Windows.MessageBox.Show("Error");
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show("error");
             }
         }
 
         private void SettleClient(object sender, RoutedEventArgs e)
         {
-            if(Validator.ValidTextBoxes(this.SetName.Text, this.SetSurname.Text, this.SetPasspNum.Text,
+            if(Validator.ValidTextBoxes(this.SetEvicDate.Text, this.SetName.Text, this.SetSurname.Text, this.SetPasspNum.Text,
                 this.SetApartNum.Text, this.SetPlaces.Text))
             {
                 try
@@ -520,7 +527,8 @@ namespace hotelClient
                         cmd.Parameters.AddWithValue("@user_surname", this.SetSurname.Text);
                         cmd.Parameters.AddWithValue("@passport_num", this.SetPasspNum.Text);
                         cmd.Parameters.AddWithValue("@reserv_places", this.SetPlaces.Text);
-                        cmd.Parameters.AddWithValue("@is_doseage", this.SetIsDos.IsChecked == true ? true : false);
+                        cmd.Parameters.AddWithValue("@is_doseage", this.SetIsDos.IsChecked == true ? false : true);
+                        cmd.Parameters.AddWithValue("@evic_date", this.SetEvicDate.Text);
 
                         SqlParameter rc = new SqlParameter();
                         rc.ParameterName = "@rc";
@@ -563,27 +571,34 @@ namespace hotelClient
 
         private void OnExportToXML(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection cn = Connector.GetConnection())
+            try
             {
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("ExportToXML", cn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                using (SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;Integrated Security=True"))
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("ExportToXML", cn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@path", this.FileNameExport);
+                    cmd.Parameters.AddWithValue("@path", this.FileNameExport);
 
-                SqlParameter rc = new SqlParameter();
-                rc.ParameterName = "@rc";
-                rc.SqlDbType = System.Data.SqlDbType.Bit;
-                rc.Direction = System.Data.ParameterDirection.Output;
-                cmd.Parameters.Add(rc);
+                    SqlParameter rc = new SqlParameter();
+                    rc.ParameterName = "@rc";
+                    rc.SqlDbType = System.Data.SqlDbType.Bit;
+                    rc.Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add(rc);
 
-                cmd.ExecuteNonQuery();
-                cn.Close();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
 
-                if ((bool)cmd.Parameters["@rc"].Value)
-                    System.Windows.MessageBox.Show("Export is Successfull");
-                else
-                    System.Windows.MessageBox.Show("Error");
+                    if ((bool)cmd.Parameters["@rc"].Value)
+                        System.Windows.MessageBox.Show("Export is Successfull");
+                    else
+                        System.Windows.MessageBox.Show("Error");
+                }
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
     }

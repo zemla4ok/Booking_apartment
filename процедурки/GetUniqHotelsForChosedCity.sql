@@ -3,10 +3,8 @@ CREATE PROCEDURE GetUniqHotelsForChosedCity
 AS BEGIN
 	declare @city_id int;
 	SET @city_id = (SELECT ID FROM CITY WHERE NAME = @city);
-
 	SELECT distinct h.NAME 
 			FROM APARTMENTS[a] inner join HOTELS[h] on a.HOTEL_ID = h.ID 
-							   inner join CITY[c] on c.ID = h.CITY_ID 
 			WHERE h.CITY_ID = 2;
 END;
 

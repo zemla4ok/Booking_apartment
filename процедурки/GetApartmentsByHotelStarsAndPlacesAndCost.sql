@@ -6,7 +6,6 @@ CREATE PROCEDURE GetApartmentsByHotelStarsAndPlacesAndCost
 AS BEGIN
 	declare @city_id int;
 	SET @city_id = (SELECT ID FROM CITY WHERE NAME = @city);	
-
 	SELECT  c.NAME, 
 			h.NAME, 
 			h.STARS,

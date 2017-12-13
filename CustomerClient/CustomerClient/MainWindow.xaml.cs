@@ -43,7 +43,7 @@ namespace CustomerClient
                 }
                 cn.Close();
             }
-            //load cityes
+            //load cities
             using (SqlConnection cn = Connector.GetConnection())
             {
                 cn.Open();

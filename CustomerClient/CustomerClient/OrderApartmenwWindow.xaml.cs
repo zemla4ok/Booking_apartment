@@ -253,8 +253,6 @@ namespace CustomerClient
                         { 
                             MessageBox.Show("Error");
                         }
-
-
                         cn.Close();
                     }
                 }

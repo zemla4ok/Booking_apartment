@@ -9,7 +9,7 @@ namespace hotelClient
 {
     static class Connector
     {
-        const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;User Id=CUSTOMER; Password=2222";
+        const string path = @"Data Source=DESKTOP-M13O155;Initial Catalog=BookingApartment;User Id=CUSTOMER_LOG; Password=2222";
 
         static public SqlConnection GetConnection()
         {

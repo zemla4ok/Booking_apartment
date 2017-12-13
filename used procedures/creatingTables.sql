@@ -1,3 +1,11 @@
+	--DROP TABLES--
+	drop table APARTMENT_LIST;
+	drop table APARTMENTS;
+	drop table HOTELS;
+	drop table CITY;
+	drop table USERS;
+
+
 CREATE TABLE CITY(
 	ID int primary key IDENTITY(1, 1),
 	NAME nvarchar(30) unique not null);
@@ -45,9 +53,3 @@ CREATE TABLE APARTMENT_LIST(
 	foreign key(USERS_ID) references USERS(ID));
 
 
-	--DROP TABLES--
-	drop table APARTMENT_LIST;
-	drop table APARTMENTS;
-	drop table HOTELS;
-	drop table CITY;
-	drop table USERS;

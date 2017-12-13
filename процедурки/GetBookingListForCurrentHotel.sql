@@ -5,10 +5,8 @@ CREATE PROCEDURE GetBookingListForCurrentHotel
 AS BEGIN
 	declare @city_id int;
 	set @city_id = (SELECT ID FROM CITY WHERE NAME like @city);
-
 	declare @hotel_id int;
 	set @hotel_id = (SELECT ID FROM HOTELS WHERE NAME like @hotel and CITY_ID = @city_id);	
-
 	SELECT a.APARTMENTS_NUM,
 		   al.DEFAULT_COST,
 		   al.RESERVED_PLACES,

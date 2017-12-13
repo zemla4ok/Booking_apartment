@@ -1,0 +1,7 @@
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\bin\Debug\Input data.exe.config
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\bin\Debug\Input data.exe
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\bin\Debug\Input data.pdb
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\obj\Debug\Input data.csprojResolveAssemblyReference.cache
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\obj\Debug\Input data.csproj.CoreCompileInputs.cache
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\obj\Debug\Input data.exe
+C:\Users\Dmitry\Desktop\Booking_apartment\Input data\Input data\obj\Debug\Input data.pdb
